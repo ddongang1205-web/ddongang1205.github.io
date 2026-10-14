@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자기소개 - 홍길동</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-light: #818cf8;
+            --bg-gradient: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --li-bg: #f8fafc;
+            --li-hover: #f1f5f9;
+            --quote-bg: linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, rgba(129, 140, 248, 0.05) 100%);
+        }
+
+        [data-theme="dark"] {
+            --primary: #818cf8;
+            --primary-light: #a5b4fc;
+            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: #334155;
+            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
+            --li-bg: #0f172a;
+            --li-hover: #273548;
+            --quote-bg: linear-gradient(135deg, rgba(129, 140, 248, 0.1) 0%, rgba(165, 180, 252, 0.1) 100%);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-gradient);
+            color: var(--text-main);
+            line-height: 1.7;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .top-bar {
+            display: flex;
+            justify-content: flex-end;
+            width: 100%;
+        }
+
+        .theme-toggle {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 10px 18px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .theme-toggle:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        header {
+            background: var(--card-bg);
+            padding: 48px 36px;
+            border-radius: 24px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, var(--primary), var(--primary-light));
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 12px;
+            letter-spacing: -0.02em;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        main {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        section {
+            background: var(--card-bg);
+            padding: 36px;
+            border-radius: 24px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid var(--border-color);
+        }
+
+        section:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 30px -10px rgba(99, 102, 241, 0.15);
+        }
+
+        h2 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        h2::before {
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 20px;
+            background: var(--primary);
+            border-radius: 4px;
+        }
+
+        p, li {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+        }
+
+        ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        li {
+            padding: 12px 16px;
+            background: var(--li-bg);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: var(--transition);
+        }
+
+        li:hover {
+            background: var(--li-hover);
+            border-color: var(--primary-light);
+            transform: translateX(4px);
+        }
+
+        li strong {
+            color: var(--text-main);
+            font-weight: 600;
+        }
+
+        blockquote {
+            margin-top: 16px;
+            padding: 20px 24px;
+            background: var(--quote-bg);
+            border-left: 4px solid var(--primary);
+            border-radius: 0 16px 16px 0;
+            font-style: italic;
+            color: var(--text-main);
+            font-weight: 500;
+        }
+
+        footer {
+            text-align: center;
+            padding: 24px;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 12px;
+            }
+            header {
+                padding: 32px 20px;
+            }
+            header h1 {
+                font-size: 2rem;
+            }
+            section {
+                padding: 24px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="top-bar">
+            <button class="theme-toggle" id="themeToggleBtn" onclick="toggleTheme()">
+                <span id="themeIcon">🌙</span> <span id="themeText">다크모드</span>
+            </button>
+        </div>
+
+        <header>
+            <h1>홍길동 <span style="font-size: 1.2rem; font-weight: 400; color: var(--primary);">Hong Gildong</span></h1>
+            <p>기본에 충실하고 늘 배우고자 하는 개발자 지망생입니다.</p>
+        </header>
+
+        <main>
+            <section>
+                <h2>프로필</h2>
+                <ul>
+                    <li><strong>소속</strong> <span>멋진대학교 컴퓨터공학과 4학년</span></li>
+                    <li><strong>연락처</strong> <span>example@email.com</span></li>
+                    <li><strong>거주지</strong> <span>서울특별시</span></li>
+                    <li><strong>좌우명</strong> <span>"작은 습관이 모여 큰 변화를 만든다."</span></li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>소개</h2>
+                <p>안녕하세요! 웹 표준과 시맨틱 웹의 가치를 중요하게 생각하며, 군더더기 없이 깔끔하고 접근성이 좋은 코드를 작성하기 위해 노력하고 있습니다. 화려한 기교보다는 누구나 읽기 편하고 직관적인 결과물을 만드는 것을 지향합니다.</p>
+                <blockquote>
+                    "기술은 복잡할수록 단순함을 잃기 쉽고, 단순함은 언제나 강력한 힘을 가집니다."
+                </blockquote>
+            </section>
+
+            <section>
+                <h2>관심사 및 기술 스택</h2>
+                <p style="margin-bottom: 16px;">현재 깊이 있게 탐구하고 있거나 흥미를 가지고 있는 분야입니다.</p>
+                <ul>
+                    <li><strong>웹 표준 및 웹 접근성</strong> <span>HTML5 Semantic Tags</span></li>
+                    <li><strong>버전 관리 시스템</strong> <span>Git & GitHub</span></li>
+                    <li><strong>프로그래밍 논리</strong> <span>Basic Algorithms</span></li>
+                    <li><strong>자기 계발</strong> <span>독서 및 에세이 쓰기</span></li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>취미</h2>
+                <ul>
+                    <li><strong>산책</strong> <span>주말 산책 및 풍경 사진 기록하기</span></li>
+                    <li><strong>커피</strong> <span>드립 커피 내리며 생각 정리하기</span></li>
+                    <li><strong>독서</strong> <span>새로운 도서 탐독하기</span></li>
+                </ul>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 홍길동. All rights reserved.</p>
+            <p>다크모드와 라이트모드 전환 기능을 지원하는 자기소개 페이지입니다.</p>
+        </footer>
+    </div>
+
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            const themeIcon = document.getElementById('themeIcon');
+            const themeText = document.getElementById('themeText');
+            
+            if (html.getAttribute('data-theme') === 'dark') {
+                html.removeAttribute('data-theme');
+                themeIcon.textContent = '🌙';
+                themeText.textContent = '다크모드';
+                localStorage.setItem('theme', 'light');
+            } else {
+                html.setAttribute('data-theme', 'dark');
+                themeIcon.textContent = '☀️';
+                themeText.textContent = '라이트모드';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        // 페이지 로드 시 사용자의 이전 테마 설정 복원
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme');
+            const themeIcon = document.getElementById('themeIcon');
+            const themeText = document.getElementById('themeText');
+
+            if (savedTheme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                themeIcon.textContent = '☀️';
+                themeText.textContent = '라이트모드';
+            }
+        });
+    </script>
+
+</body>
+</html>
